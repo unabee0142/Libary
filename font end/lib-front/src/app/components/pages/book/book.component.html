@@ -1,0 +1,56 @@
+<div class="row mt-3">
+    <div class="col-md-12" style="text-align: right;">
+        <a routerLink="/book/new" class="btn btn-success">Add new book</a>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="h1">ข้อมูลหนังสือ</div>
+
+    <form class="input-group my-3" [formGroup]="searchForm">
+        <input type="text" class="form-control" placeholder="Book Name" formControlName ="searchName"/>
+        <button class="input-group-text btn btn-primary" (click)="searchName()">Search</button>
+    </form>
+
+    <div class="col-md-12 mt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>รหัสหนังสือ</th>
+                    <th>ชื่อหนังสือ</th>
+                    <th>ชื่อผู้แต่ง</th>
+                    <th>สำนักพิมพ์</th>
+                    <th>ราคา</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                 <tr *ngFor="let b of books">
+                    
+                   <td>{{b.bookId}}</td>
+                   <td>{{b.name}}</td>
+                   <td>{{b.author}}</td>
+                   <td>{{b.publisher}}</td>
+                   <td>{{b.price}}</td>
+                  
+                   
+                   
+                    <td>
+                        <a class="btn btn-success btn-sm"  routerLink="/book/add" >
+                            Add
+                        </a> &nbsp;
+                        <a class="btn btn-info btn-sm" routerLink="/book/edit/{{b._id}}" >
+                            Edit
+                        </a> &nbsp;
+                        <a class="btn btn-danger btn-sm" (click)="deleteBook(b._id)">
+                            
+                            Delete
+                        </a>&nbsp;
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
